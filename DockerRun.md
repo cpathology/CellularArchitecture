@@ -24,6 +24,6 @@ $ docker run -it --rm --user $(id -u):$(id -g) \
 $ docker run -it --rm --user $(id -u):$(id -g) \
   -v /rsrch1/ip/pchen6/Codes/CHEN/CellularArchitectureEmbed:/App/CellularArchitectureEmbed \
   -v /rsrch1/ip/pchen6/TMIClusterK8S/Data/CellularArchitectureEmbed:/Data \
-  --shm-size=768G --gpus '"device=4,5,6,7"' --cpuset-cpus=100-255 \
+  --shm-size=768G --gpus '"device=2,3,4,5,6,7"' --cpuset-cpus=100-255 \
   --name cellular_architecture_embed_chen cellular_architecture_embed:chen
 ```
