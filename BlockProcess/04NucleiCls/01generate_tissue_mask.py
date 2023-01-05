@@ -61,9 +61,9 @@ if __name__ == "__main__":
             map_y = lowlevel_h - 1 if map_y == lowlevel_h else map_y
             cell_map[map_y, map_x] += 1
         # refine the map
-        density_threshold = divide_ratio * divide_ratio / (255.0 * 256.0)
         cell_map[cell_map >= 255] = 255
-        smooth_map = filters.gaussian(cell_map.astype(np.uint8), sigma=5)
+        smooth_map = (filters.gaussian(cell_map.astype(np.uint8), sigma=5) * 255.0).astype(np.uint8)
+        density_threshold = divide_ratio * divide_ratio / 2560.0
         cell_mask = smooth_map > density_threshold
         cell_mask = ndimage.binary_fill_holes(cell_mask)
         cell_mask = morphology.remove_small_objects(cell_mask, min_size=args.min_tissue_size, connectivity=8)
