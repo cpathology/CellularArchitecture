@@ -46,9 +46,8 @@ if __name__ == "__main__":
         shutil.rmtree(block_seg_dir)
     os.makedirs(block_seg_dir)
     slide_seg_dir = os.path.join(args.data_root, args.dataset, args.slide_seg_dir)
-    if os.path.exists(slide_seg_dir):
-        shutil.rmtree(slide_seg_dir)
-    os.makedirs(slide_seg_dir)      
+    if not os.path.exists(slide_seg_dir):
+        os.makedirs(slide_seg_dir)      
 
 
    # model setting
