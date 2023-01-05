@@ -130,6 +130,7 @@ if __name__ == "__main__":
             cls_num += 1
         nuclei_fea = np.asarray(nuclei_fea)
         nuclei_labels = nuclei_clf.predict(nuclei_fea)
+        nuclei_labels = [int(label) for label in nuclei_labels]
         for ind, label in enumerate(nuclei_labels):
             cls_seg_dict[str(ind+1)]["label"] = label
         # save json file
