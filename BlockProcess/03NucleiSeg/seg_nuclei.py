@@ -84,6 +84,9 @@ if __name__ == "__main__":
 
     # start nuclei segmetnation 
     for slide_ind, cur_slide in enumerate(slide_lst):
+        slide_json_path = os.path.join(slide_seg_dir, cur_slide + ".json")
+        if os.path.exists(slide_json_path):
+            continue
         cur_time_str = datetime.now(pytz.timezone('America/Chicago')).strftime("%m/%d/%Y, %H:%M:%S")
         print("Start {}/{} {} @ {}".format(slide_ind+1, len(slide_lst), cur_slide, cur_time_str))
         cur_slide_block_dir = os.path.join(block_img_dir, cur_slide)
@@ -119,7 +122,6 @@ if __name__ == "__main__":
                 slide_nuc_id += 1
         slide_seg_dict = {"mag": args.slide_mag, "nuc": slide_nuc_dict}
         # save json file
-        slide_json_path = os.path.join(slide_seg_dir, cur_slide + ".json")
         with open(slide_json_path, 'w') as fp:
             json.dump(slide_seg_dict, fp)        
         cur_time_str = datetime.now(pytz.timezone('America/Chicago')).strftime("%m/%d/%Y, %H:%M:%S")
