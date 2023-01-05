@@ -17,7 +17,7 @@ def set_args():
     parser.add_argument("--block_img_dir",     type=str,       default="SlideBlocks")
     parser.add_argument("--block_norm_dir",    type=str,       default="BlockNorms")    
     parser.add_argument("--slide_seg_dir",     type=str,       default="SlideSegs") 
-    parser.add_argument("--slide_cls_dir",     type=str,       default="SlideNucleiCls")    
+    parser.add_argument("--slide_cls_dir",     type=str,       default="CoreNucleiCls")    
     parser.add_argument("--slide_tissue_dir",  type=str,       default="SlideTissues")
     parser.add_argument("--tissue_slide_level",type=int,       default=3)  
     parser.add_argument("--checkpoint_dir",    type=str,       default="Checkpoints")    
