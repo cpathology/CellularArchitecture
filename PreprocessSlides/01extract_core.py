@@ -18,7 +18,7 @@ def set_args():
     parser.add_argument("--raw_slide_dir",     type=str,       default="RawSlides")
     parser.add_argument("--core_slide_dir",    type=str,       default="CoreSlides")
     parser.add_argument("--slide_suffix",      type=str,       default="svs", choices=["svs", "tif"])
-    parser.add_argument("--dataset",           type=str,       default="ICON", choices=["ICON", ])    
+    parser.add_argument("--dataset",           type=str,       default="ICON", choices=["ICON", "Immuno"])    
     parser.add_argument("--block_size",        type=int,       default=6400)
 
     args = parser.parse_args()

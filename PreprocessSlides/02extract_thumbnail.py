@@ -16,7 +16,7 @@ def set_args():
     parser.add_argument("--core_slide_dir",    type=str,       default="CoreSlides")
     parser.add_argument("--core_thumbnail_dir",type=str,       default="CoreThumbnails")
     parser.add_argument("--thumbnail_min_size",type=int,       default=400)    
-    parser.add_argument("--dataset",           type=str,       default="ICON")
+    parser.add_argument("--dataset",           type=str,       default="ICON", choices=["ICON", "Immuno"])
 
     args = parser.parse_args()
     return args
