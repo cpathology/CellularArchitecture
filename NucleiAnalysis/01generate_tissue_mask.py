@@ -13,10 +13,10 @@ def set_args():
     parser = argparse.ArgumentParser(description = "Generate tissue mask based on nuclei segmentation")
     parser.add_argument("--data_root",         type=str,       default="/Data")
     parser.add_argument("--core_slide_dir",    type=str,       default="CoreSlides")
-    parser.add_argument("--slide_seg_dir",     type=str,       default="SlideSegs") 
-    parser.add_argument("--slide_tissue_dir",  type=str,       default="SlideTissues")
+    parser.add_argument("--slide_seg_dir",     type=str,       default="CoreSegs") 
+    parser.add_argument("--slide_tissue_dir",  type=str,       default="CoreTissues")
     parser.add_argument("--tissue_slide_level",type=int,       default=3)  
-    parser.add_argument("--min_tissue_size",   type=int,       default=10000)    
+    parser.add_argument("--min_tissue_size",   type=int,       default=30000)    
     parser.add_argument("--dataset",           type=str,       default="ICON", choices=["ICON", "Immuno"])
 
     args = parser.parse_args()
@@ -63,7 +63,7 @@ if __name__ == "__main__":
         # refine the map
         cell_map[cell_map >= 255] = 255
         smooth_map = filters.gaussian(cell_map.astype(np.uint8), sigma=9) * 255.0
-        density_threshold = divide_ratio * divide_ratio / 2560.0
+        density_threshold = divide_ratio * divide_ratio / 5120.0
         cell_mask = smooth_map > density_threshold
         cell_mask = ndimage.binary_fill_holes(cell_mask)
         cell_mask = morphology.remove_small_objects(cell_mask, min_size=args.min_tissue_size, connectivity=8)

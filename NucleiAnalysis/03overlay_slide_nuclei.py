@@ -31,6 +31,8 @@ if __name__ == "__main__":
     slide_core_dir = os.path.join(dataset_root, args.core_slide_dir)
     slide_nuclei_cls_dir = os.path.join(dataset_root, args.core_cls_dir)
     core_overlay_dir = os.path.join(dataset_root, args.core_overlay_dir)
+    if not os.path.exists(core_overlay_dir):
+        os.makedirs(core_overlay_dir)
 
     core_lst = sorted([os.path.splitext(ele)[0] for ele in os.listdir(slide_core_dir) if ele.endswith(".tiff")])
     # Traverse slide one-by-one
@@ -45,7 +47,7 @@ if __name__ == "__main__":
         cur_core_path = os.path.join(slide_core_dir, cur_core + ".tiff")
         cur_core_head = openslide.OpenSlide(cur_core_path)     
         cur_core_img = cur_core_head.read_region(location=(0, 0), level=0, size=cur_core_head.level_dimensions[0])     
-        cur_core_img = np.asarray(cur_core_img)[:,:,:3]
+        cur_core_img = np.ascontiguousarray(np.asarray(cur_core_img)[:,:,:3], dtype=np.uint8)
 
         # overlay nuclei
         nuclei_inst_dict = json.load(open(slide_nuclei_path, "r"))
