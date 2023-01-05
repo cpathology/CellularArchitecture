@@ -16,7 +16,7 @@ def set_args():
     parser.add_argument("--block_root_dir",    type=str,       default="BlockAnalysis")
     parser.add_argument("--block_img_dir",     type=str,       default="SlideBlocks")
     parser.add_argument("--block_seg_dir",     type=str,       default="BlockSegs")
-    parser.add_argument("--slide_seg_dir",     type=str,       default="SlideSegs")    
+    parser.add_argument("--slide_seg_dir",     type=str,       default="CoreSegs")    
     parser.add_argument("--gpu_ids",           type=str,       default="0,1")
     parser.add_argument("--batch_size",        type=int,       default=64)
     parser.add_argument("--num_workers",       type=int,       default=32)
