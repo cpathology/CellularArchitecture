@@ -37,6 +37,7 @@ if __name__ == "__main__":
     core_lst = sorted([os.path.splitext(ele)[0] for ele in os.listdir(slide_core_dir) if ele.endswith(".tiff")])
     # Traverse slide one-by-one
     for ind, cur_core in enumerate(core_lst):
+        print("Generate mask on {}/{} on {}".format(ind+1, len(core_lst), cur_core))
         cur_core_path = os.path.join(slide_core_dir, cur_core + ".tiff")
         slide_head = openslide.OpenSlide(cur_core_path)
         # load segmentation
@@ -60,7 +61,7 @@ if __name__ == "__main__":
             map_y = lowlevel_h - 1 if map_y == lowlevel_h else map_y
             cell_map[map_y, map_x] += 1
         # refine the map
-        density_threshold = divide_ratio * divide_ratio / (255.0 * 1000.0)
+        density_threshold = divide_ratio * divide_ratio / (255.0 * 256.0)
         cell_map[cell_map >= 255] = 255
         smooth_map = filters.gaussian(cell_map.astype(np.uint8), sigma=5)
         cell_mask = smooth_map > density_threshold
