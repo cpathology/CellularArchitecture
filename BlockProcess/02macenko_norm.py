@@ -25,7 +25,7 @@ if __name__ == "__main__":
     # directory setting
     dataset_root = os.path.join(args.data_root, args.dataset)
     block_img_dir = os.path.join(dataset_root, args.block_root_dir, args.block_img_dir)
-    slide_lst = [ele for ele in os.listdir(block_img_dir) if os.path.isdir(os.path.join(block_img_dir, ele))]
+    slide_lst = sorted([ele for ele in os.listdir(block_img_dir) if os.path.isdir(os.path.join(block_img_dir, ele))])
     block_norm_dir = os.path.join(dataset_root, args.block_root_dir, args.block_norm_dir)
     if os.path.exists(block_norm_dir):
         shutil.rmtree(block_norm_dir)
