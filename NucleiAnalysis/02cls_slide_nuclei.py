@@ -96,7 +96,6 @@ if __name__ == "__main__":
         cls_seg_dict = {}
         nuclei_fea = []
         cls_num = 1
-        import pdb; pdb.set_trace()
         for key in core_nuc_dict.keys():
             cell_x, cell_y = core_nuc_dict[key]["centroid"]
             map_x = int(np.floor(cell_x / divide_ratio))
