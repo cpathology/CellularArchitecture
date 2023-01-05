@@ -62,7 +62,7 @@ if __name__ == "__main__":
             cell_map[map_y, map_x] += 1
         # refine the map
         cell_map[cell_map >= 255] = 255
-        smooth_map = (filters.gaussian(cell_map.astype(np.uint8), sigma=5) * 255.0).astype(np.uint8)
+        smooth_map = filters.gaussian(cell_map.astype(np.uint8), sigma=9) * 255.0
         density_threshold = divide_ratio * divide_ratio / 2560.0
         cell_mask = smooth_map > density_threshold
         cell_mask = ndimage.binary_fill_holes(cell_mask)
