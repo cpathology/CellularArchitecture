@@ -1,2 +1,2 @@
-# CellularArchitectureEmbed
-Embedding Cellular Architecture of WSI to Decipher Tumor Heterogeneity
+# CellularArchitecture
+Investigating WSI Cellular Architecture to Decipher Tumor Heterogeneity
