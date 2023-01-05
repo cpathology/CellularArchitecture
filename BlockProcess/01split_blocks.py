@@ -19,7 +19,7 @@ def set_args():
     parser.add_argument("--block_img_dir",     type=str,       default="SlideBlocks")
     parser.add_argument("--block_size",        type=int,       default=6400)
     parser.add_argument("--num_workers",       type=int,       default=32)
-    parser.add_argument("--dataset",           type=str,       default="ICON", choices=["ICON", ])
+    parser.add_argument("--dataset",           type=str,       default="ICON", choices=["ICON", "Immuno"])
     args = parser.parse_args()
     return args
 

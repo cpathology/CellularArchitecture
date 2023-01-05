@@ -14,7 +14,7 @@ def set_args():
     parser.add_argument("--block_root_dir",    type=str,       default="BlockAnalysis")
     parser.add_argument("--block_img_dir",     type=str,       default="SlideBlocks")
     parser.add_argument("--block_norm_dir",    type=str,       default="BlockNorms")
-    parser.add_argument("--dataset",           type=str,       default="ICON", choices=["ICON", ])
+    parser.add_argument("--dataset",           type=str,       default="ICON", choices=["ICON", "Immuno"])
     args = parser.parse_args()
     return args
 

@@ -20,7 +20,7 @@ def set_args():
     parser.add_argument("--gpu_ids",           type=str,       default="0,1")
     parser.add_argument("--batch_size",        type=int,       default=64)
     parser.add_argument("--num_workers",       type=int,       default=32)
-    parser.add_argument("--dataset",           type=str,       default="ICON", choices=["ICON", ])
+    parser.add_argument("--dataset",           type=str,       default="ICON", choices=["ICON", "Immuno"])
     parser.add_argument("--slide_mag",         type=str,       default="20X",  choices=["20X", ])
     args = parser.parse_args()
     return args
