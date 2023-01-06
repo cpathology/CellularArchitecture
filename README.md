@@ -1,5 +1,7 @@
 # CellularArchitecture
 Investigating WSI Cellular Architecture to Decipher Tumor Heterogeneity - [Models for nuclei sementationa and classification](https://www.synapse.org/#!Synapse:syn50619016).
+![WSI Nuclei Segmentation & Classification](WSI-Nuclei-Seg-Cls.png)
+
 
 ## Environment Configurations
 ### a. Prepare docker image
@@ -38,3 +40,5 @@ $ docker run -it --rm --user $(id -u):$(id -g) \
 * Nuclei-based tissue detection
 * WSI nuclei classification 
 * Overlay classified nuclie onto slides
+
+
