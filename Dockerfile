@@ -46,6 +46,6 @@ WORKDIR /.local
 RUN chmod 777 /.local
 WORKDIR /Data
 RUN chmod 777 /Data
-WORKDIR /App/CellularArchitectureEmbed
+WORKDIR /App/CellularArchitecture
 
 CMD ["/bin/bash"]
