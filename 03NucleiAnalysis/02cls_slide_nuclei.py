@@ -49,6 +49,9 @@ if __name__ == "__main__":
     core_lst = sorted([os.path.splitext(ele)[0] for ele in os.listdir(slide_core_dir) if ele.endswith(".tiff")])
     # Traverse slide one-by-one
     for ind, cur_core in enumerate(core_lst):
+        slide_nuclei_path = os.path.join(slide_nuclei_cls_dir, cur_core + ".json")
+        if os.path.exists(slide_nuclei_path):
+            continue
         print("Classify nuclei on {}/{} on {}".format(ind+1, len(core_lst), cur_core))
         core_nuclei_seg_path = os.path.join(slide_seg_dir, cur_core + ".json")
         if not os.path.exists(core_nuclei_seg_path):
@@ -129,12 +132,12 @@ if __name__ == "__main__":
             cls_seg_dict[str(cls_num)] = nuclei_cls_dict
             cls_num += 1
         nuclei_fea = np.asarray(nuclei_fea)
-        nuclei_labels = nuclei_clf.predict(nuclei_fea)
-        nuclei_labels = [int(label) for label in nuclei_labels]
-        for ind, label in enumerate(nuclei_labels):
-            cls_seg_dict[str(ind+1)]["label"] = label
+        if len(nuclei_fea) != 0:
+            nuclei_labels = nuclei_clf.predict(nuclei_fea)
+            nuclei_labels = [int(label) for label in nuclei_labels]
+            for ind, label in enumerate(nuclei_labels):
+                cls_seg_dict[str(ind+1)]["label"] = label
         # save json file
-        slide_nuclei_path = os.path.join(slide_nuclei_cls_dir, cur_core + ".json")
         with open(slide_nuclei_path, 'w') as fp:
             json.dump(cls_seg_dict, fp)        
 
