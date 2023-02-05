@@ -15,8 +15,9 @@ def set_args():
     parser.add_argument("--core_slide_dir",    type=str,       default="CoreSlides")
     parser.add_argument("--slide_seg_dir",     type=str,       default="CoreSegs") 
     parser.add_argument("--slide_tissue_dir",  type=str,       default="CoreTissues")
-    parser.add_argument("--tissue_slide_level",type=int,       default=3)  
-    parser.add_argument("--min_tissue_size",   type=int,       default=30000)    
+    parser.add_argument("--tissue_slide_level",type=int,       default=5)  
+    parser.add_argument("--min_tissue_size",   type=int,       default=5000)    
+    parser.add_argument("--density_coef",      type=int,       default=800000)  
     parser.add_argument("--dataset",           type=str,       default="ICON", choices=["ICON", "Immuno"])
 
     args = parser.parse_args()
@@ -51,7 +52,7 @@ if __name__ == "__main__":
 
         # initiaite the map
         lowlevel_w, lowlevel_h = slide_head.level_dimensions[args.tissue_slide_level]
-        cell_map = np.zeros((lowlevel_h, lowlevel_w), dtype=np.uint32)
+        cell_map = np.zeros((lowlevel_h, lowlevel_w), dtype=np.uint8)
         divide_ratio = np.power(2, args.tissue_slide_level)
         for key in slide_nuc_dict.keys():
             cell_x, cell_y = slide_nuc_dict[key]["centroid"]
@@ -61,12 +62,12 @@ if __name__ == "__main__":
             map_y = lowlevel_h - 1 if map_y == lowlevel_h else map_y
             cell_map[map_y, map_x] += 1
         # refine the map
-        cell_map[cell_map >= 255] = 255
-        smooth_map = filters.gaussian(cell_map.astype(np.uint8), sigma=9) * 255.0
-        density_threshold = divide_ratio * divide_ratio / 5120.0
+        smooth_map = filters.gaussian(cell_map, sigma=9)
+        density_threshold = np.power(divide_ratio, 2) * 1.0 / args.density_coef
         cell_mask = smooth_map > density_threshold
         cell_mask = ndimage.binary_fill_holes(cell_mask)
         cell_mask = morphology.remove_small_objects(cell_mask, min_size=args.min_tissue_size, connectivity=8)
+        cell_mask = cell_mask.astype(np.uint8) * 255
         # save cell_mask
         tissue_mask_path = os.path.join(slide_tissue_dir, cur_core + "-L" + str(args.tissue_slide_level) + "-Tissue.png")
-        io.imsave(tissue_mask_path, cell_mask * 255)
+        io.imsave(tissue_mask_path, cell_mask)

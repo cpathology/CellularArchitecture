@@ -19,7 +19,7 @@ def set_args():
     parser.add_argument("--slide_seg_dir",     type=str,       default="CoreSegs") 
     parser.add_argument("--slide_cls_dir",     type=str,       default="CoreNucleiCls")    
     parser.add_argument("--slide_tissue_dir",  type=str,       default="CoreTissues")
-    parser.add_argument("--tissue_slide_level",type=int,       default=3)  
+    parser.add_argument("--tissue_slide_level",type=int,       default=5)  
     parser.add_argument("--checkpoint_dir",    type=str,       default="Checkpoints")    
     parser.add_argument("--dataset",           type=str,       default="ICON", choices=["ICON", "Immuno"])
 
