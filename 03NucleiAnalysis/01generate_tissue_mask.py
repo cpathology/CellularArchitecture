@@ -15,8 +15,8 @@ def set_args():
     parser.add_argument("--core_slide_dir",    type=str,       default="CoreSlides")
     parser.add_argument("--slide_seg_dir",     type=str,       default="CoreSegs") 
     parser.add_argument("--slide_tissue_dir",  type=str,       default="CoreTissues")
-    parser.add_argument("--tissue_slide_level",type=int,       default=5)  
-    parser.add_argument("--min_tissue_size",   type=int,       default=5000)    
+    parser.add_argument("--tissue_slide_level",type=int,       default=6)  
+    parser.add_argument("--min_tissue_size",   type=int,       default=2000)    
     parser.add_argument("--density_coef",      type=int,       default=800000)  
     parser.add_argument("--dataset",           type=str,       default="ICON", choices=["ICON", "Immuno"])
 
