@@ -36,9 +36,7 @@ $ docker run -it --rm --user $(id -u):$(id -g) \
 ## WSI Cellular Architecture Study
 ### 1. PreprocessSlides - Extract annotated core tissue regions
 ### 2. BlockProcess - Block-wise stain normalization and nuclei segmentation
-### 3. NucleiAnalysis 
-* Nuclei-based tissue detection
-* WSI nuclei classification 
-* Overlay classified nuclie onto slides
+### 3. NucleiAnalysis - Nuclei classification and overlaying
+### 4. TumorHeterogeneity - Study the slide heterogeneity 
 
 
