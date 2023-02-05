@@ -34,10 +34,10 @@ ENV PATH=$CONDA_PREFIX/bin:$PATH
 # Install python packages
 RUN pip install gpustat==0.6.0 setuptools==61.2.0 pytz==2021.1 termcolor==1.1.0
 RUN conda install pytorch torchvision torchaudio pytorch-cuda=11.6 -c pytorch -c nvidia
-RUN pip install openslide-python==1.2.0 opencv-python==4.5.4.60 umap-learn==0.5.3
-RUN pip install histocartography==0.2.1 scikit-image==0.18.0
+RUN pip install openslide-python==1.2.0 opencv-python==4.5.4.60 umap-learn==0.5.3 xgboost==1.5.1 
+RUN pip install histocartography==0.2.1 scikit-image==0.18.0 mahotas==1.4.12 
 RUN pip install tqdm==4.64.0 docopt==0.6.2 imgaug==0.4.0 joblib==1.2.0 termcolor2==0.0.3
-RUN pip install xgboost==1.5.1
+RUN pip install pandas==1.5.0
 
 # Set environment variables
 WORKDIR /.dgl
